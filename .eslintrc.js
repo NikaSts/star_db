@@ -10,7 +10,7 @@ module.exports = {
     'react',
   ],
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 8,
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true
@@ -29,10 +29,15 @@ module.exports = {
     }], // for nested label htmlFor error
     'react/jsx-props-no-spreading': 'off', // temporary enabled
     'react/jsx-closing-bracket-location': 'off',
+    'import/no-useless-path-segments': 'off',
   },
   settings: {
     react: {
       version: 16
-    }
+    },
+    'import/extensions': [
+    '.js',
+    '.jsx',
+  ]
   }
 }
