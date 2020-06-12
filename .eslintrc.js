@@ -19,7 +19,6 @@ module.exports = {
   rules: {
     'no-console': 'error', // airbnb is using warn
     'no-alert': 'error', // airbnb is using warn
-    'react/jsx-filename-extension': ['error', { extensions: ['.js'] }], // airbnb is using .jsx
     'react/jsx-one-expression-per-line': 'off',
     'react/prop-types': 'off', // temporary enabled
     'jsx-a11y/label-has-for': [2, {
@@ -35,7 +34,7 @@ module.exports = {
     react: {
       version: 16
     },
-    'import/extensions': [
+    import/extensions: [
     '.js',
     '.jsx',
   ]
