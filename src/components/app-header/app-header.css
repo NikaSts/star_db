@@ -1,0 +1,17 @@
+.header {
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header-list {
+  align-items: center;
+  margin: 0;
+  list-style: none;
+}
+
+.header-list li {
+  margin-left: 10px;
+}
