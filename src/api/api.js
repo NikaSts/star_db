@@ -1,7 +1,10 @@
+import { DATA_END_POINT } from '../utils';
+import { transformPlanet, transformPerson, transformStarship } from './adapter';
+
 
 export default class API {
-  constructor(url) {
-    this.url = url;
+  constructor() {
+    this.url = DATA_END_POINT;
   }
 
   async getResource(url) {
@@ -18,8 +21,9 @@ export default class API {
     return response.result;
   }
 
-  getPersonById(id) {
-    return this.getResource(`/people/${id}/`);
+  async getPersonById(id) {
+    const person = await this.getResource(`/people/${id}/`);
+    return transformPerson(person, id);
   }
 
   async getAllPlanets() {
@@ -27,8 +31,9 @@ export default class API {
     return response.result;
   }
 
-  getPlanetById(id) {
-    return this.getResource(`/planets/${id}/`);
+  async getPlanetById(id) {
+    const planet = await this.getResource(`/planets/${id}/`);
+    return transformPlanet(planet, id);
   }
 
   async getAllStarships() {
@@ -36,7 +41,8 @@ export default class API {
     return response.result;
   }
 
-  getStarshipById(id) {
-    return this.getResource(`/starship/${id}/`);
+  async getStarshipById(id) {
+    const starship = await this.getResource(`/starship/${id}/`);
+    return transformStarship(starship, id);
   }
 }

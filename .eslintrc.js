@@ -28,15 +28,13 @@ module.exports = {
     }], // for nested label htmlFor error
     'react/jsx-props-no-spreading': 'off', // temporary enabled
     'react/jsx-closing-bracket-location': 'off',
+    "react/jsx-filename-extension": 'off',
     'import/no-useless-path-segments': 'off',
   },
   settings: {
     react: {
-      version: 16
+      version: '16.13'
     },
-    import/extensions: [
-    '.js',
-    '.jsx',
-  ]
+    'import/extensions': ['error', 'always', {ignorePackages: true}],
   }
 }
