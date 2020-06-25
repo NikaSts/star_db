@@ -18,7 +18,7 @@ export default class API {
 
   async getAllPeople() {
     const response = await this.getResource('/people/');
-    return response.result;
+    return response.results.map((person, i) => transformPerson(person, i));
   }
 
   async getPersonById(id) {
@@ -28,7 +28,7 @@ export default class API {
 
   async getAllPlanets() {
     const response = await this.getResource('/planets/');
-    return response.result;
+    return response.results.map((planet, i) => transformPlanet(planet, i));
   }
 
   async getPlanetById(id) {
@@ -38,7 +38,7 @@ export default class API {
 
   async getAllStarships() {
     const response = await this.getResource('/starship/');
-    return response.result;
+    return response.results.map((starship, i) => transformStarship(starship, i));
   }
 
   async getStarshipById(id) {

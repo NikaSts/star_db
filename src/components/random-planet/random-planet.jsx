@@ -14,17 +14,20 @@ export default class RandomPlanet extends Component {
       error: false,
     };
     this.api = new API();
+
     this.updatePlanet = this.updatePlanet.bind(this);
     this.onPlanetLoaded = this.onPlanetLoaded.bind(this);
     this.onError = this.onError.bind(this);
+  }
 
+  componentDidMount() {
     this.updatePlanet();
   }
 
   onError() {
     this.setState({
-      error: true,
       loading: false,
+      error: true,
     });
   }
 
@@ -36,7 +39,7 @@ export default class RandomPlanet extends Component {
   }
 
   updatePlanet() {
-    const id = getRandomNumber(0, TOTAL_PLANETS_COUNT);
+    const id = getRandomNumber(1, TOTAL_PLANETS_COUNT);
     this.api
       .getPlanetById(id)
       .then(this.onPlanetLoaded)
