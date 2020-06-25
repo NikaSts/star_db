@@ -1,3 +1,7 @@
-.list-group {
-  width: 48%;
+.list-group button {
+  border: 0 none;
+}
+
+.list-group li {
+  padding: 0;
 }

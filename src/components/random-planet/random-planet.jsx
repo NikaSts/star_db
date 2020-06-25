@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './random-planet.css';
 import API from '../../api/api';
 import Spinner from '../spinner';
 import ErrorMessage from '../error-message';
-import { getRandomNumber, TOTAL_PLANETS_COUNT, IMAGE_END_POINT } from '../../utils';
+import { getRandomNumber, TOTAL_PLANETS_COUNT, ImageEndPoint } from '../../utils';
+import './random-planet.css';
+
 
 export default class RandomPlanet extends Component {
   constructor() {
@@ -71,8 +72,8 @@ const Planet = ({ planet }) => {
 
   return (
     <>
-      <div className="random-planet_description">
-        <h2 className="visually-hidden">{name}</h2>
+      <div>
+        <h2>{name}</h2>
         <table>
           <tbody>
             <tr>
@@ -90,7 +91,7 @@ const Planet = ({ planet }) => {
           </tbody>
         </table>
       </div>
-      <img src={`${IMAGE_END_POINT}${id}.jpg`} alt={`Planet ${name}`} width="120" height="120" />
+      <img src={`${ImageEndPoint.PLANET}${id}.jpg`} alt={`Planet ${name}`} width="120" height="120" />
     </>
   );
 };

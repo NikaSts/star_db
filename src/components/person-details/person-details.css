@@ -1,0 +1,20 @@
+.person-details {
+  padding: 15px;
+  border-radius: 3px;
+  margin-bottom: 30px;
+  border: 1px solid #444444;
+}
+
+.person-details h2 {
+  font-size: 1.5rem;
+}
+
+.person-details img {
+  margin-right: 20px;
+  order: -1;
+  border-radius: 5px;
+}
+
+.person-details .term {
+  width: 125px;
+}
