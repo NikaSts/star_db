@@ -35,6 +35,7 @@ module.exports = {
     react: {
       version: '16.13'
     },
-    'import/extensions': ['error', 'always', {ignorePackages: true}],
-  }
+  },
+  import/extensions: ['error', 'always', {ignorePackages: true}],
+
 }
