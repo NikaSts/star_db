@@ -44,30 +44,33 @@ export default class ItemList extends Component {
   }
 
   render() {
-    const { onListItemClick } = this.props;
+    const { onListItemClick, renderItem } = this.props;
     const { itemList, loading, error } = this.state;
     const errorMessage = error ? <ErrorMessage /> : null;
     const spinner = loading ? <Spinner /> : null;
     const hasData = !(loading || error);
-
     return (
       <ul className="list-group">
         {errorMessage}
         {spinner}
-        {hasData ? itemList.map(({ id, name }) => (
-          <li
-            className="list-group-item"
-            key={id}>
-            <button
-              className="list-group-item list-group-item-action"
-              type="button"
-              onClick={() => onListItemClick(id)}
-              onKeyPress={() => onListItemClick(id)}
-              tabIndex="0">
-              {name}
-            </button>
-          </li>
-        )) : null}
+        {hasData ? itemList.map((item) => {
+          const { id } = item;
+          const label = renderItem(item);
+          return (
+            <li
+              className="list-group-item"
+              key={id}>
+              <button
+                className="list-group-item list-group-item-action"
+                type="button"
+                onClick={() => onListItemClick(id)}
+                onKeyPress={() => onListItemClick(id)}
+                tabIndex="0">
+                {label}
+              </button>
+            </li>
+          );
+        }) : null}
       </ul>
     );
   }

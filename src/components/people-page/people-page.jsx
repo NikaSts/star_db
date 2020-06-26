@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ItemList from '../item-list';
 import PersonDetails from '../person-details';
 import ErrorMessage from '../error-message';
+import Row from '../row';
 
 export default class PeoplePage extends Component {
   constructor() {
@@ -24,24 +25,20 @@ export default class PeoplePage extends Component {
 
   render() {
     const { selectedPerson, hasError } = this.state;
-    const { getData } = this.props;
-
     if (hasError) {
       return <ErrorMessage />;
     }
+
+    const { getData } = this.props;
+    const itemList = (
+      <ItemList
+        onListItemClick={this.handleListItemClick}
+        getData={getData}
+        renderItem={({ name, gender }) => (`${name} (${gender})`)} />
+    );
+    const personDetails = <PersonDetails person={selectedPerson} />;
     return (
-      <>
-        <div className="row mb2">
-          <div className="col-md-4">
-            <ItemList
-              onListItemClick={this.handleListItemClick}
-              getData={getData} />
-          </div>
-          <div className="col-md-8">
-            <PersonDetails person={selectedPerson} />
-          </div>
-        </div>
-      </>
+      <Row left={itemList} right={personDetails} />
     );
   }
 }
