@@ -52,7 +52,7 @@ export default class PersonDetails extends Component {
       return;
     }
     this.api
-      .getPersonById(person)
+      .getPersonById(person + 1)
       .then(this.onPersonLoaded)
       .catch(this.onError);
   }
