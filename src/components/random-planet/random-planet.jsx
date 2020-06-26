@@ -15,6 +15,7 @@ export default class RandomPlanet extends Component {
       error: false,
     };
     this.api = new API();
+    this.interval = null;
 
     this.updatePlanet = this.updatePlanet.bind(this);
     this.onPlanetLoaded = this.onPlanetLoaded.bind(this);
@@ -23,6 +24,11 @@ export default class RandomPlanet extends Component {
 
   componentDidMount() {
     this.updatePlanet();
+    this.interval = setInterval(this.updatePlanet, 10000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   onError() {
