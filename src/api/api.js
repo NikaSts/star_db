@@ -7,6 +7,7 @@ export default class API {
     this.url = DATA_END_POINT;
 
     this.getAllPeople = this.getAllPeople.bind(this);
+    this.getAllPlanets = this.getAllPlanets.bind(this);
   }
 
   async getResource(url) {

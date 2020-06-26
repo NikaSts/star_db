@@ -5,6 +5,7 @@ import ErrorMessage from '../error-message';
 import './app.css';
 import PeoplePage from '../people-page';
 import API from '../../api/api';
+import PlanetPage from '../planet-page';
 
 
 export default class App extends Component {
@@ -31,6 +32,7 @@ export default class App extends Component {
         <AppHeader />
         <RandomPlanet />
         <PeoplePage getData={this.api.getAllPeople} />
+        <PlanetPage getData={this.api.getAllPlanets} />
       </>
     );
   }
