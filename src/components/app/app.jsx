@@ -1,39 +1,33 @@
 import React, { Component } from 'react';
 import AppHeader from '../app-header';
 import RandomPlanet from '../random-planet';
-import ItemList from '../item-list';
-import PersonDetails from '../person-details';
-
+import ErrorMessage from '../error-message';
 import './app.css';
+import PeoplePage from '../people-page';
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      selectedPerson: -1,
+      hasError: false,
     };
-    this.handleListItemClick = this.handleListItemClick.bind(this);
   }
 
-  handleListItemClick(id) {
-    this.setState({ selectedPerson: id });
+  componentDidCatch() {
+    this.setState({ hasError: true });
   }
 
   render() {
-    const { selectedPerson } = this.state;
+    const { hasError } = this.state;
+
+    if (hasError) {
+      return <ErrorMessage />;
+    }
     return (
       <>
         <AppHeader />
         <RandomPlanet />
-
-        <div className="row mb2">
-          <div className="col-md-4">
-            <ItemList onListItemClick={this.handleListItemClick} />
-          </div>
-          <div className="col-md-8">
-            <PersonDetails person={selectedPerson} />
-          </div>
-        </div>
+        <PeoplePage />
       </>
     );
   }
