@@ -5,6 +5,8 @@ import { transformPlanet, transformPerson, transformStarship } from './adapter';
 export default class API {
   constructor() {
     this.url = DATA_END_POINT;
+
+    this.getAllPeople = this.getAllPeople.bind(this);
   }
 
   async getResource(url) {

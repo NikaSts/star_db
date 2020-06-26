@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './item-list.css';
-import API from '../../api/api';
 import Spinner from '../spinner';
 import ErrorMessage from '../error-message';
 
@@ -8,9 +7,8 @@ import ErrorMessage from '../error-message';
 export default class ItemList extends Component {
   constructor() {
     super();
-    this.api = new API();
     this.state = {
-      peopleList: [],
+      itemList: [],
       loading: false,
       error: false,
     };
@@ -31,23 +29,23 @@ export default class ItemList extends Component {
     });
   }
 
-  onListLoaded(peopleList) {
+  onListLoaded(itemList) {
     this.setState({
-      peopleList,
+      itemList,
       loading: false,
     });
   }
 
   updateList() {
-    this.api
-      .getAllPeople()
+    const { getData } = this.props;
+    getData()
       .then(this.onListLoaded)
       .catch(this.onError);
   }
 
   render() {
     const { onListItemClick } = this.props;
-    const { peopleList, loading, error } = this.state;
+    const { itemList, loading, error } = this.state;
     const errorMessage = error ? <ErrorMessage /> : null;
     const spinner = loading ? <Spinner /> : null;
     const hasData = !(loading || error);
@@ -56,7 +54,7 @@ export default class ItemList extends Component {
       <ul className="list-group">
         {errorMessage}
         {spinner}
-        {hasData ? peopleList.map(({ id, name }) => (
+        {hasData ? itemList.map(({ id, name }) => (
           <li
             className="list-group-item"
             key={id}>

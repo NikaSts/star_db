@@ -4,6 +4,8 @@ import RandomPlanet from '../random-planet';
 import ErrorMessage from '../error-message';
 import './app.css';
 import PeoplePage from '../people-page';
+import API from '../../api/api';
+
 
 export default class App extends Component {
   constructor() {
@@ -11,6 +13,7 @@ export default class App extends Component {
     this.state = {
       hasError: false,
     };
+    this.api = new API();
   }
 
   componentDidCatch() {
@@ -27,7 +30,7 @@ export default class App extends Component {
       <>
         <AppHeader />
         <RandomPlanet />
-        <PeoplePage />
+        <PeoplePage getData={this.api.getAllPeople} />
       </>
     );
   }
