@@ -24,6 +24,7 @@ export default class PeoplePage extends Component {
 
   render() {
     const { selectedPerson, hasError } = this.state;
+    const { getData } = this.props;
 
     if (hasError) {
       return <ErrorMessage />;
@@ -32,7 +33,9 @@ export default class PeoplePage extends Component {
       <>
         <div className="row mb2">
           <div className="col-md-4">
-            <ItemList onListItemClick={this.handleListItemClick} />
+            <ItemList
+              onListItemClick={this.handleListItemClick}
+              getData={getData} />
           </div>
           <div className="col-md-8">
             <PersonDetails person={selectedPerson} />
