@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ItemList from '../item-list';
 import PersonDetails from '../person-details';
-import ErrorMessage from '../error-message';
+import ErrorBoundry from '../error-boundry';
 import Row from '../row';
 
 export default class PeoplePage extends Component {
@@ -9,14 +9,9 @@ export default class PeoplePage extends Component {
     super();
     this.state = {
       selectedPerson: -1,
-      hasError: false,
     };
 
     this.handleListItemClick = this.handleListItemClick.bind(this);
-  }
-
-  componentDidCatch() {
-    this.setState({ hasError: true });
   }
 
   handleListItemClick(id) {
@@ -24,21 +19,21 @@ export default class PeoplePage extends Component {
   }
 
   render() {
-    const { selectedPerson, hasError } = this.state;
-    if (hasError) {
-      return <ErrorMessage />;
-    }
-
+    const { selectedPerson } = this.state;
     const { getData } = this.props;
     const itemList = (
       <ItemList
         onListItemClick={this.handleListItemClick}
-        getData={getData}
-        renderItem={({ name, gender }) => (`${name} (${gender})`)} />
+        getData={getData}>
+        {({ name, gender }) => (`${name} (${gender})`)}
+      </ItemList>
     );
     const personDetails = <PersonDetails person={selectedPerson} />;
+
     return (
-      <Row left={itemList} right={personDetails} />
+      <ErrorBoundry>
+        <Row left={itemList} right={personDetails} />
+      </ErrorBoundry>
     );
   }
 }

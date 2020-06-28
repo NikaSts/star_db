@@ -44,7 +44,7 @@ export default class ItemList extends Component {
   }
 
   render() {
-    const { onListItemClick, renderItem } = this.props;
+    const { onListItemClick, children } = this.props;
     const { itemList, loading, error } = this.state;
     const errorMessage = error ? <ErrorMessage /> : null;
     const spinner = loading ? <Spinner /> : null;
@@ -55,7 +55,7 @@ export default class ItemList extends Component {
         {spinner}
         {hasData ? itemList.map((item) => {
           const { id } = item;
-          const label = renderItem(item);
+          const label = children(item);
           return (
             <li
               className="list-group-item"
