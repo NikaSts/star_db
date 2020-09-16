@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ItemList from '../item-list';
 import PersonDetails from '../person-details';
-import ErrorMessage from '../error-message';
 import Row from '../row';
 
 export default class PeoplePage extends Component {
@@ -9,14 +8,9 @@ export default class PeoplePage extends Component {
     super();
     this.state = {
       selectedPerson: -1,
-      hasError: false,
     };
 
     this.handleListItemClick = this.handleListItemClick.bind(this);
-  }
-
-  componentDidCatch() {
-    this.setState({ hasError: true });
   }
 
   handleListItemClick(id) {
@@ -24,10 +18,7 @@ export default class PeoplePage extends Component {
   }
 
   render() {
-    const { selectedPerson, hasError } = this.state;
-    if (hasError) {
-      return <ErrorMessage />;
-    }
+    const { selectedPerson } = this.state;
 
     const { getData } = this.props;
     const itemList = (
