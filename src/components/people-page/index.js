@@ -1,3 +1,3 @@
-import PeoplePage from './people-page.jsx';
+import PeoplePage from './people-page';
 
 export default PeoplePage;

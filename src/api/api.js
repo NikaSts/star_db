@@ -1,4 +1,4 @@
-import { DATA_END_POINT } from '../utils';
+import { DATA_END_POINT, ImageEndPoint } from '../utils';
 import { transformPlanet, transformPerson, transformStarship } from './adapter';
 
 
@@ -7,6 +7,7 @@ export default class API {
     this.url = DATA_END_POINT;
 
     this.getAllPeople = this.getAllPeople.bind(this);
+    this.getAllPlanets = this.getAllPlanets.bind(this);
   }
 
   async getResource(url) {
@@ -28,6 +29,10 @@ export default class API {
     return transformPerson(person, id);
   }
 
+  static getPersonImage({ id }) {
+    return `${ImageEndPoint.PERSON}${id}.jpg`;
+  }
+
   async getAllPlanets() {
     const response = await this.getResource('/planets/');
     return response.results.map((planet, i) => transformPlanet(planet, i));
@@ -36,6 +41,10 @@ export default class API {
   async getPlanetById(id) {
     const planet = await this.getResource(`/planets/${id}/`);
     return transformPlanet(planet, id);
+  }
+
+  static getPlanetImage({ id }) {
+    return `${ImageEndPoint.PLANET}${id}.jpg`;
   }
 
   async getAllStarships() {

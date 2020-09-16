@@ -1,3 +1,3 @@
-import Spinner from './spinner.jsx';
+import Spinner from './spinner';
 
 export default Spinner;

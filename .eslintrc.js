@@ -36,6 +36,4 @@ module.exports = {
       version: '16.13'
     },
   },
-  import/extensions: ['error', 'always', {ignorePackages: true}],
-
 }

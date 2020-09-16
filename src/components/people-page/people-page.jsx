@@ -21,7 +21,7 @@ export default class PeoplePage extends Component {
     const { selectedPerson } = this.state;
 
     const { getData } = this.props;
-    const itemList = (
+    const peopleList = (
       <ItemList
         onListItemClick={this.handleListItemClick}
         getData={getData}
@@ -29,7 +29,7 @@ export default class PeoplePage extends Component {
     );
     const personDetails = <PersonDetails person={selectedPerson} />;
     return (
-      <Row left={itemList} right={personDetails} />
+      <Row left={peopleList} right={personDetails} />
     );
   }
 }
