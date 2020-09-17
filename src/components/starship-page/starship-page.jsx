@@ -4,33 +4,32 @@ import ItemDetails from '../item-details';
 import Row from '../row';
 import { Type } from '../../utils';
 
-export default class PeoplePage extends Component {
+export default class StarshipPage extends Component {
   constructor() {
     super();
     this.state = {
-      selectedPerson: null,
+      selectedStarship: null,
     };
 
     this.handleListItemClick = this.handleListItemClick.bind(this);
   }
 
   handleListItemClick(item) {
-    this.setState({ selectedPerson: item });
+    this.setState({ selectedStarship: item });
   }
 
   render() {
-    const { selectedPerson } = this.state;
-
+    const { selectedStarship } = this.state;
     const { getData } = this.props;
-    const peopleList = (
+    const starshipList = (
       <ItemList
         onListItemClick={this.handleListItemClick}
         getData={getData}
-        renderItem={({ name, gender }) => (`${name} (${gender})`)} />
+        renderItem={({ name, passengers }) => (`${name} (${passengers})`)} />
     );
-    const personDetails = <ItemDetails item={selectedPerson} type={Type.PERSON} />;
+    const starshipDetails = <ItemDetails item={selectedStarship} type={Type.STARSHIP} />;
     return (
-      <Row left={peopleList} right={personDetails} />
+      <Row left={starshipList} right={starshipDetails} />
     );
   }
 }

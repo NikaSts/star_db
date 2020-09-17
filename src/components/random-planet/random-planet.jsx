@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import API from '../../api/api';
 import Spinner from '../spinner';
 import ErrorMessage from '../error-message';
-import { getRandomNumber, TOTAL_PLANETS_COUNT, ImageEndPoint } from '../../utils';
+import {
+  getRandomNumber, TOTAL_PLANETS_COUNT, imageEndPoint, Type,
+} from '../../utils';
 import './random-planet.css';
 
 
@@ -97,7 +99,7 @@ const Planet = ({ planet }) => {
           </tbody>
         </table>
       </div>
-      <img src={`${ImageEndPoint.PLANET}${id}.jpg`} alt={`Planet ${name}`} width="120" height="120" />
+      <img src={`${imageEndPoint}/${Type.PLANET}/${id}.jpg`} alt={`Planet ${name}`} width="120" height="120" />
     </>
   );
 };

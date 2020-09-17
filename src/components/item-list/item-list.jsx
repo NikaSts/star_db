@@ -63,8 +63,8 @@ export default class ItemList extends Component {
               <button
                 className="list-group-item list-group-item-action"
                 type="button"
-                onClick={() => onListItemClick(id)}
-                onKeyPress={() => onListItemClick(id)}
+                onClick={() => onListItemClick(item)}
+                onKeyPress={() => onListItemClick(item)}
                 tabIndex="0">
                 {label}
               </button>

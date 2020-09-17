@@ -8,29 +8,28 @@ export default class PeoplePage extends Component {
   constructor() {
     super();
     this.state = {
-      selectedPerson: null,
+      selectedPlanet: null,
     };
 
     this.handleListItemClick = this.handleListItemClick.bind(this);
   }
 
   handleListItemClick(item) {
-    this.setState({ selectedPerson: item });
+    this.setState({ selectedPlanet: item });
   }
 
   render() {
-    const { selectedPerson } = this.state;
-
+    const { selectedPlanet } = this.state;
     const { getData } = this.props;
-    const peopleList = (
+    const planetList = (
       <ItemList
         onListItemClick={this.handleListItemClick}
         getData={getData}
-        renderItem={({ name, gender }) => (`${name} (${gender})`)} />
+        renderItem={({ name, diameter }) => (`${name} (${diameter})`)} />
     );
-    const personDetails = <ItemDetails item={selectedPerson} type={Type.PERSON} />;
+    const planetDetails = <ItemDetails item={selectedPlanet} type={Type.PLANET} />;
     return (
-      <Row left={peopleList} right={personDetails} />
+      <Row left={planetList} right={planetDetails} />
     );
   }
 }

@@ -1,4 +1,4 @@
-import { DATA_END_POINT, ImageEndPoint } from '../utils';
+import { DATA_END_POINT } from '../utils';
 import { transformPlanet, transformPerson, transformStarship } from './adapter';
 
 
@@ -8,6 +8,7 @@ export default class API {
 
     this.getAllPeople = this.getAllPeople.bind(this);
     this.getAllPlanets = this.getAllPlanets.bind(this);
+    this.getAllStarships = this.getAllStarships.bind(this);
   }
 
   async getResource(url) {
@@ -24,15 +25,6 @@ export default class API {
     return response.results.map((person, i) => transformPerson(person, i));
   }
 
-  async getPersonById(id) {
-    const person = await this.getResource(`/people/${id}/`);
-    return transformPerson(person, id);
-  }
-
-  static getPersonImage({ id }) {
-    return `${ImageEndPoint.PERSON}${id}.jpg`;
-  }
-
   async getAllPlanets() {
     const response = await this.getResource('/planets/');
     return response.results.map((planet, i) => transformPlanet(planet, i));
@@ -43,17 +35,8 @@ export default class API {
     return transformPlanet(planet, id);
   }
 
-  static getPlanetImage({ id }) {
-    return `${ImageEndPoint.PLANET}${id}.jpg`;
-  }
-
   async getAllStarships() {
-    const response = await this.getResource('/starship/');
+    const response = await this.getResource('/starships/');
     return response.results.map((starship, i) => transformStarship(starship, i));
-  }
-
-  async getStarshipById(id) {
-    const starship = await this.getResource(`/starship/${id}/`);
-    return transformStarship(starship, id);
   }
 }
