@@ -3,10 +3,12 @@ import ItemList from '../item-list';
 import ItemDetails from '../item-details';
 import Row from '../row';
 import { Type } from '../../utils';
+import API from '../../api/api';
 
 export default class PeoplePage extends Component {
   constructor() {
     super();
+    this.api = new API();
     this.state = {
       selectedPerson: null,
     };
@@ -20,13 +22,12 @@ export default class PeoplePage extends Component {
 
   render() {
     const { selectedPerson } = this.state;
-
-    const { getData } = this.props;
     const peopleList = (
       <ItemList
         onListItemClick={this.handleListItemClick}
-        getData={getData}
-        renderItem={({ name, gender }) => (`${name} (${gender})`)} />
+        getData={this.api.getAllPeople}>
+        {({ name, gender }) => (`${name} (${gender})`)}
+      </ItemList>
     );
     const personDetails = <ItemDetails item={selectedPerson} type={Type.PERSON} />;
     return (

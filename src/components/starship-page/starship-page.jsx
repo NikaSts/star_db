@@ -3,10 +3,12 @@ import ItemList from '../item-list';
 import ItemDetails from '../item-details';
 import Row from '../row';
 import { Type } from '../../utils';
+import API from '../../api/api';
 
 export default class StarshipPage extends Component {
   constructor() {
     super();
+    this.api = new API();
     this.state = {
       selectedStarship: null,
     };
@@ -20,12 +22,12 @@ export default class StarshipPage extends Component {
 
   render() {
     const { selectedStarship } = this.state;
-    const { getData } = this.props;
     const starshipList = (
       <ItemList
         onListItemClick={this.handleListItemClick}
-        getData={getData}
-        renderItem={({ name, passengers }) => (`${name} (${passengers})`)} />
+        getData={this.api.getAllStarships}>
+        {({ name, passengers }) => (`${name} (${passengers})`)}
+      </ItemList>
     );
     const starshipDetails = <ItemDetails item={selectedStarship} type={Type.STARSHIP} />;
     return (

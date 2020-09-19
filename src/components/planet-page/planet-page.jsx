@@ -3,10 +3,12 @@ import ItemList from '../item-list';
 import ItemDetails from '../item-details';
 import Row from '../row';
 import { Type } from '../../utils';
+import API from '../../api/api';
 
-export default class PeoplePage extends Component {
+export default class PlanetPage extends Component {
   constructor() {
     super();
+    this.api = new API();
     this.state = {
       selectedPlanet: null,
     };
@@ -19,17 +21,18 @@ export default class PeoplePage extends Component {
   }
 
   render() {
+    const { getAllPlanets } = this.api;
     const { selectedPlanet } = this.state;
-    const { getData } = this.props;
-    const planetList = (
+    const PlanetList = (
       <ItemList
         onListItemClick={this.handleListItemClick}
-        getData={getData}
-        renderItem={({ name, diameter }) => (`${name} (${diameter})`)} />
+        getData={getAllPlanets}>
+        {({ name, diameter }) => (`${name} (${diameter})`)}
+      </ItemList>
     );
     const planetDetails = <ItemDetails item={selectedPlanet} type={Type.PLANET} />;
     return (
-      <Row left={planetList} right={planetDetails} />
+      <Row left={PlanetList} right={planetDetails} />
     );
   }
 }

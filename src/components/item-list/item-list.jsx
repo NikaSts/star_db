@@ -44,7 +44,7 @@ export default class ItemList extends Component {
   }
 
   render() {
-    const { onListItemClick, renderItem } = this.props;
+    const { onListItemClick, children: renderItem } = this.props;
     const { itemList, loading, error } = this.state;
     const errorMessage = error ? <ErrorMessage /> : null;
     const spinner = loading ? <Spinner /> : null;
