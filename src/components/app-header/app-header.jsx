@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { capitalizeFirstLetter, buttons } from '../../utils';
 import './app-header.css';
 
@@ -8,11 +9,11 @@ const AppHeader = () => (
     <ul className="header-list d-flex">
       {buttons.map((button) => (
         <li>
-          <button
-            type="button"
+          <Link
+            to={`/${button}`}
             className="btn btn-outline-info">
             {capitalizeFirstLetter(button)}
-          </button>
+          </Link>
         </li>
       ))}
     </ul>
