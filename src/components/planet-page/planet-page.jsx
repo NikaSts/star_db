@@ -4,6 +4,7 @@ import ItemDetails from '../item-details';
 import Row from '../row';
 import { Type } from '../../utils';
 import API from '../../api/api';
+import withData from '../../hocs/with-data';
 
 export default class PlanetPage extends Component {
   constructor() {
@@ -13,26 +14,28 @@ export default class PlanetPage extends Component {
       selectedPlanet: null,
     };
 
-    this.handleListItemClick = this.handleListItemClick.bind(this);
+    this.handleItemClick = this.handleItemClick.bind(this);
   }
 
-  handleListItemClick(item) {
+  handleItemClick(item) {
     this.setState({ selectedPlanet: item });
   }
 
   render() {
-    const { getAllPlanets } = this.api;
     const { selectedPlanet } = this.state;
-    const PlanetList = (
-      <ItemList
-        onListItemClick={this.handleListItemClick}
-        getData={getAllPlanets}>
-        {({ name, diameter }) => (`${name} (${diameter})`)}
-      </ItemList>
-    );
+    const { getAllPlanets } = this.api;
+
+    const PlanetList = withData(ItemList, getAllPlanets);
+
     const planetDetails = <ItemDetails item={selectedPlanet} type={Type.PLANET} />;
     return (
-      <Row left={PlanetList} right={planetDetails} />
+      <Row
+        left={(
+          <PlanetList
+            onItemClick={this.handleItemClick}
+            renderItem={({ name, diameter }) => (`${name} (${diameter})`)} />
+      )}
+        right={planetDetails} />
     );
   }
 }

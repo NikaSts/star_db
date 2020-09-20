@@ -4,6 +4,7 @@ import ItemDetails from '../item-details';
 import Row from '../row';
 import { Type } from '../../utils';
 import API from '../../api/api';
+import withData from '../../hocs/with-data';
 
 export default class StarshipPage extends Component {
   constructor() {
@@ -13,25 +14,27 @@ export default class StarshipPage extends Component {
       selectedStarship: null,
     };
 
-    this.handleListItemClick = this.handleListItemClick.bind(this);
+    this.handleItemClick = this.handleItemClick.bind(this);
   }
 
-  handleListItemClick(item) {
+  handleItemClick(item) {
     this.setState({ selectedStarship: item });
   }
 
   render() {
     const { selectedStarship } = this.state;
-    const starshipList = (
-      <ItemList
-        onListItemClick={this.handleListItemClick}
-        getData={this.api.getAllStarships}>
-        {({ name, passengers }) => (`${name} (${passengers})`)}
-      </ItemList>
-    );
+    const { getAllStarships } = this.api;
+
+    const StarshipList = withData(ItemList, getAllStarships);
     const starshipDetails = <ItemDetails item={selectedStarship} type={Type.STARSHIP} />;
     return (
-      <Row left={starshipList} right={starshipDetails} />
+      <Row
+        left={(
+          <StarshipList
+            onItemClick={this.handleItemClick}
+            renderItem={({ name, passengers }) => (`${name} (${passengers})`)} />
+)}
+        right={starshipDetails} />
     );
   }
 }

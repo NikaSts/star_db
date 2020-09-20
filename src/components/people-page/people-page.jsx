@@ -4,6 +4,7 @@ import ItemDetails from '../item-details';
 import Row from '../row';
 import { Type } from '../../utils';
 import API from '../../api/api';
+import withData from '../../hocs/with-data';
 
 export default class PeoplePage extends Component {
   constructor() {
@@ -13,25 +14,28 @@ export default class PeoplePage extends Component {
       selectedPerson: null,
     };
 
-    this.handleListItemClick = this.handleListItemClick.bind(this);
+    this.handleItemClick = this.handleItemClick.bind(this);
   }
 
-  handleListItemClick(item) {
+  handleItemClick(item) {
     this.setState({ selectedPerson: item });
   }
 
   render() {
     const { selectedPerson } = this.state;
-    const peopleList = (
-      <ItemList
-        onListItemClick={this.handleListItemClick}
-        getData={this.api.getAllPeople}>
-        {({ name, gender }) => (`${name} (${gender})`)}
-      </ItemList>
-    );
+    const { getAllPeople } = this.api;
+
+    const PeopleList = withData(ItemList, getAllPeople);
+
     const personDetails = <ItemDetails item={selectedPerson} type={Type.PERSON} />;
     return (
-      <Row left={peopleList} right={personDetails} />
+      <Row
+        left={(
+          <PeopleList
+            onItemClick={this.handleItemClick}
+            renderItem={({ name, gender }) => (`${name} (${gender})`)} />
+)}
+        right={personDetails} />
     );
   }
 }
