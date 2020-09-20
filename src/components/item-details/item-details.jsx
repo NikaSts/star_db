@@ -30,7 +30,7 @@ const Item = ({ item, type }) => {
           </tbody>
         </table>
       </div>
-      <img src={`${imageEndPoint}/${type}/${id}.jpg`} alt={`Planet ${name}`} />
+      <img src={`${imageEndPoint}/${type}/${id}.jpg`} alt={`${type}: ${name}`} />
     </>
   );
 };

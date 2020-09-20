@@ -22,12 +22,12 @@ export default class API {
 
   async getAllPeople() {
     const response = await this.getResource('/people/');
-    return response.results.map((person, i) => transformPerson(person, i));
+    return response.results.map((person) => transformPerson(person));
   }
 
   async getAllPlanets() {
     const response = await this.getResource('/planets/');
-    return response.results.map((planet, i) => transformPlanet(planet, i));
+    return response.results.map((planet) => transformPlanet(planet));
   }
 
   async getPlanetById(id) {
@@ -37,6 +37,6 @@ export default class API {
 
   async getAllStarships() {
     const response = await this.getResource('/starships/');
-    return response.results.map((starship, i) => transformStarship(starship, i));
+    return response.results.map((starship) => transformStarship(starship));
   }
 }
