@@ -4,7 +4,7 @@ import ErrorMessage from '../components/error-message';
 
 
 const withData = (Component, getData) => {
-  class Wrapper extends PureComponent {
+  class WrapperWithData extends PureComponent {
     constructor(props) {
       super(props);
       this.state = {
@@ -60,7 +60,7 @@ const withData = (Component, getData) => {
     }
   }
 
-  return Wrapper;
+  return WrapperWithData;
 };
 
 export default withData;

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 
 const withActiveItem = (Component) => {
-  class Wrapper extends PureComponent {
+  class WrapperWithActiveItem extends PureComponent {
     constructor(props) {
       super(props);
       this.state = {
@@ -25,7 +25,7 @@ const withActiveItem = (Component) => {
       );
     }
   }
-  return Wrapper;
+  return WrapperWithActiveItem;
 };
 
 export default withActiveItem;

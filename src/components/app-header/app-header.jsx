@@ -10,7 +10,7 @@ const AppHeader = ({ activeItem, onItemClick }) => (
       {buttons.map((button) => {
         const isActive = activeItem === button;
         return (
-          <li>
+          <li key={button}>
             <Link
               to={`/${button}`}
               className={`btn btn-outline-info ${isActive ? 'active' : ''}`}
