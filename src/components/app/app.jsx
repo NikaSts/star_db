@@ -10,6 +10,9 @@ import StarshipPage from '../starship-page';
 import withActiveItem from '../../hocs/with-active-item';
 
 const WrappedAppHeader = withActiveItem(AppHeader);
+const WrappedPeoplePage = withActiveItem(PeoplePage);
+const WrappedPlanetPage = withActiveItem(PlanetPage);
+const WrappedStarshipPage = withActiveItem(StarshipPage);
 
 const App = () => (
   <ErrorBoundry>
@@ -26,17 +29,17 @@ const App = () => (
       <Route
         exact
         path="/people"
-        component={PeoplePage}
+        render={() => <WrappedPeoplePage />}
             />
       <Route
         exact
         path="/planets"
-        render={() => <PlanetPage />}
+        render={() => <WrappedPlanetPage />}
             />
       <Route
         exact
         path="/starships"
-        render={() => <StarshipPage />}
+        render={() => <WrappedStarshipPage />}
             />
     </BrowserRouter>
   </ErrorBoundry>

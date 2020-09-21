@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ItemList from '../item-list';
 import ItemDetails from '../item-details';
 import Row from '../row';
@@ -6,36 +6,27 @@ import { Type } from '../../utils';
 import API from '../../api/api';
 import withData from '../../hocs/with-data';
 
-export default class PlanetPage extends Component {
-  constructor() {
-    super();
-    this.api = new API();
-    this.state = {
-      selectedPlanet: null,
-    };
+const PlanetPage = ({ activeItem, onItemClick }) => {
+  const api = new API();
 
-    this.handleItemClick = this.handleItemClick.bind(this);
-  }
+  const { getAllPlanets } = api;
 
-  handleItemClick(item) {
-    this.setState({ selectedPlanet: item });
-  }
+  const PlanetList = withData(ItemList, getAllPlanets);
 
-  render() {
-    const { selectedPlanet } = this.state;
-    const { getAllPlanets } = this.api;
+  return (
+    <Row
+      left={(
+        <PlanetList
+          onItemClick={onItemClick}
+          activeItem={activeItem}
+          renderItem={({ name, diameter }) => (`${name} (${diameter})`)} />
+)}
+      right={(
+        <ItemDetails
+          item={activeItem}
+          type={Type.PLANET} />
+)} />
+  );
+};
 
-    const PlanetList = withData(ItemList, getAllPlanets);
-
-    const planetDetails = <ItemDetails item={selectedPlanet} type={Type.PLANET} />;
-    return (
-      <Row
-        left={(
-          <PlanetList
-            onItemClick={this.handleItemClick}
-            renderItem={({ name, diameter }) => (`${name} (${diameter})`)} />
-      )}
-        right={planetDetails} />
-    );
-  }
-}
+export default PlanetPage;

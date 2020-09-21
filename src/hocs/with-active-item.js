@@ -5,7 +5,7 @@ const withActiveItem = (Component) => {
     constructor(props) {
       super(props);
       this.state = {
-        activeItem: undefined,
+        activeItem: null,
       };
       this.handleItemClick = this.handleItemClick.bind(this);
     }
