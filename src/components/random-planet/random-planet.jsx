@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import API from '../../api/api';
+import { getPlanetById } from '../../api/api';
 import Spinner from '../spinner';
 import ErrorMessage from '../error-message';
 import {
@@ -16,7 +16,6 @@ export default class RandomPlanet extends Component {
       loading: true,
       error: false,
     };
-    this.api = new API();
     this.interval = null;
 
     this.updatePlanet = this.updatePlanet.bind(this);
@@ -26,7 +25,7 @@ export default class RandomPlanet extends Component {
 
   componentDidMount() {
     this.updatePlanet();
-    this.interval = setInterval(this.updatePlanet, 10000);
+    this.interval = setInterval(this.updatePlanet, 100000);
   }
 
   componentWillUnmount() {
@@ -48,9 +47,7 @@ export default class RandomPlanet extends Component {
   }
 
   updatePlanet() {
-    const id = getRandomNumber(1, TOTAL_PLANETS_COUNT);
-    this.api
-      .getPlanetById(id)
+    const id = getRandomNumber(1, TOTAL_PLANETS_COUNT); getPlanetById(id)
       .then(this.onPlanetLoaded)
       .catch(this.onError);
   }

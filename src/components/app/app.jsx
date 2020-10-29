@@ -8,10 +8,8 @@ import PlanetPage from '../planet-page';
 import ErrorBoundry from '../error-boundry';
 import StarshipPage from '../starship-page';
 import withData from '../../hocs/with-data';
-import API from '../../api/api';
+import { getAllPeople, getAllPlanets, getAllStarships } from '../../api/api';
 
-const api = new API();
-const { getAllPeople, getAllPlanets, getAllStarships } = api;
 const PeoplePageWithData = withData(PeoplePage, getAllPeople);
 const PlanetPageWithData = withData(PlanetPage, getAllPlanets);
 const StarshipPageWithData = withData(StarshipPage, getAllStarships);
