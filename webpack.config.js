@@ -1,16 +1,23 @@
 const path = require('path');
+const NODE_ENV = process.env.NODE_ENV;
+const HTMLWebpackPlugins = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
+  mode: NODE_ENV ? NODE_ENV : 'development',
+
+  entry: path.resolve(__dirname, 'src/index.js'),
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'public')
+    path: path.join(__dirname, 'dist')
   },
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
     open: true,
     port: 1338,
+    hot: true,
+  },
+  resolve: {
+    extensions: [`.jsx`, `.js`, `json`]
   },
   module: {
     rules: [
@@ -24,22 +31,40 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-        ]
+          'style-loader',
+          'css-loader']
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|ico)$/i,
         use: [
           {
             loader: 'file-loader',
+            options: {
+              outputPath: 'images',
+              name: '[name]-[sha1:hash:5].[ext]'
+            }
           },
         ],
       },
+      {
+        test: /\.(woff|woff2)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'fonts',
+              name: '[name].[ext]'
+            }
+          }
+        ]
+      },
     ],
   },
-  resolve: {
-    extensions: [`.jsx`, `.js`, `json`]
-  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HTMLWebpackPlugins({
+      template: 'public/index.html',
+    })
+  ],
   devtool: 'source-map',
 };

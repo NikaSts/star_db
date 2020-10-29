@@ -5,14 +5,29 @@
   "scripts": {
     "eslint": "eslint --ext .jsx --ext .js src/",
     "test": "npm run eslint",
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server"
+    "build:prod": "env NODE_ENV=production webpack --config webpack.config.js",
+    "build:dev": "env NODE_ENV=development webpack --config webpack.config.js",
+    "start": "env NODE_ENV=development webpack-dev-server"
+  },
+  "author": "NikaSts",
+  "browserslist": {
+    "production": [
+      "> 2% in IT",
+      "current node"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version",
+      "last 1 edge version"
+    ]
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
     "@babel/preset-env": "7.10.2",
     "@babel/preset-react": "7.10.1",
     "babel-loader": "8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "3.5.3",
     "eslint": "5.13.0",
     "eslint-config-airbnb": "18.1.0",
@@ -20,6 +35,7 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.20.0",
     "file-loader": "6.0.0",
+    "html-webpack-plugin": "^4.5.0",
     "style-loader": "1.2.1",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11",
