@@ -7,12 +7,6 @@ import PeoplePage from '../people-page';
 import PlanetPage from '../planet-page';
 import ErrorBoundry from '../error-boundry';
 import StarshipPage from '../starship-page';
-import withData from '../../hocs/with-data';
-import { getAllPeople, getAllPlanets, getAllStarships } from '../../api/api';
-
-const PeoplePageWithData = withData(PeoplePage, getAllPeople);
-const PlanetPageWithData = withData(PlanetPage, getAllPlanets);
-const StarshipPageWithData = withData(StarshipPage, getAllStarships);
 
 
 const App = () => (
@@ -30,17 +24,17 @@ const App = () => (
       <Route
         exact
         path="/people"
-        render={() => <PeoplePageWithData />}
+        render={() => <PeoplePage />}
             />
       <Route
         exact
         path="/planets"
-        render={() => <PlanetPageWithData />}
+        render={() => <PlanetPage />}
             />
       <Route
         exact
         path="/starships"
-        render={() => <StarshipPageWithData />}
+        render={() => <StarshipPage />}
             />
     </BrowserRouter>
   </ErrorBoundry>

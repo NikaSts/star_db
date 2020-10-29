@@ -1,30 +1,25 @@
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 
 const withActiveItem = (Component) => {
-  class WrapperWithActiveItem extends PureComponent {
-    constructor(props) {
-      super(props);
-      this.state = {
-        activeItem: null,
-      };
-      this.handleItemClick = this.handleItemClick.bind(this);
-    }
+  const WrapperWithActiveItem = (props) => {
 
-    handleItemClick(activeItem) {
-      this.setState({ activeItem });
-    }
+    const [activeItem, setActiveItem] = useState(null);
 
-    render() {
-      const { activeItem } = this.state;
-      return (
-        <Component
-          {...this.props}
-          activeItem={activeItem}
-          onItemClick={this.handleItemClick}
+    const handleItemClick = (item) => {
+      if (activeItem !== null && activeItem.id === item.id) {
+        return;
+      }
+      setActiveItem(item);
+    };
+
+    return (
+      <Component
+        {...props}
+        activeItem={activeItem}
+        onItemClick={(item) => handleItemClick(item)}
       />
-      );
-    }
-  }
+    );
+  };
   return WrapperWithActiveItem;
 };
 
