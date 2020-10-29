@@ -1,6 +1,6 @@
 import React from 'react';
-import './error-message.css';
 import icon from './death-star.png';
+import './error-message.css';
 
 const ErrorMessage = () => (
   <div className="error-message">

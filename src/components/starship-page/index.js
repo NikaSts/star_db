@@ -1,1 +1,1 @@
-export {default} from './starship-page';
+export { default } from './starship-page';

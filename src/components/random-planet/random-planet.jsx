@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Spinner, ErrorMessage } from '../../components';
 import { getPlanetById } from '../../api/api';
-import Spinner from '../spinner';
-import ErrorMessage from '../error-message';
 import {
   getRandomNumber, TOTAL_PLANETS_COUNT, imageEndPoint, Type,
 } from '../../utils';

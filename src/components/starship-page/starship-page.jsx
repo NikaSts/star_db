@@ -1,11 +1,8 @@
 import React from 'react';
-import ItemList from '../item-list';
-import ItemDetails from '../item-details';
-import Row from '../row';
-import { Type } from '../../utils';
+import { ItemList, ItemDetails, Row } from '../../components';
+import { withData, withActiveItem } from '../../hocs';
 import { getAllStarships } from '../../api/api';
-import withActiveItem from '../../hocs/with-active-item';
-import withData from '../../hocs/with-data';
+import { Type } from '../../utils';
 
 const StarshipPage = ({ items, activeItem, onItemClick }) => (
   <Row

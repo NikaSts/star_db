@@ -1,11 +1,8 @@
 import React from 'react';
-import ItemList from '../item-list';
-import ItemDetails from '../item-details';
-import Row from '../row';
-import { Type } from '../../utils';
-import withData from '../../hocs/with-data';
+import { ItemList, ItemDetails, Row } from '../../components';
+import { withData, withActiveItem } from '../../hocs';
 import { getAllPeople } from '../../api/api';
-import withActiveItem from '../../hocs/with-active-item';
+import { Type } from '../../utils';
 
 const PeoplePage = ({ items, activeItem, onItemClick }) => (
   <Row

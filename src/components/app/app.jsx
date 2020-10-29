@@ -1,13 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import AppHeader from '../app-header';
-import RandomPlanet from '../random-planet';
-import './app.css';
-import PeoplePage from '../people-page';
-import PlanetPage from '../planet-page';
-import ErrorBoundry from '../error-boundry';
-import StarshipPage from '../starship-page';
-
+import {
+  AppHeader, RandomPlanet, PeoplePage, PlanetPage, StarshipPage, ErrorBoundry,
+} from '../../components';
 
 const App = () => (
   <ErrorBoundry>
