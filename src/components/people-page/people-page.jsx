@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ItemList from '../item-list';
 import ItemDetails from '../item-details';
 import Row from '../row';
 import { Type } from '../../utils';
-import API from '../../api/api';
-import withData from '../../hocs/with-data';
 
-const PeoplePage = ({ activeItem, onItemClick }) => {
-  const api = new API();
+const PeoplePage = ({ items }) => {
 
-  const { getAllPeople } = api;
+  const [activeItem, setActiveItem] = useState(null);
 
-  const PeopleList = withData(ItemList, getAllPeople);
+  const handleItemClick = (item) => {
+    if (activeItem !== null && activeItem.id === item.id) {
+      return;
+    }
+    setActiveItem(item);
+  };
 
   return (
     <Row
       left={(
-        <PeopleList
-          onItemClick={onItemClick}
+        <ItemList
+          items={items}
+          onItemClick={(item) => handleItemClick(item)}
           activeItem={activeItem}
           renderItem={({ name, gender }) => (`${name} (${gender})`)} />
 )}

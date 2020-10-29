@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ItemList from '../item-list';
 import ItemDetails from '../item-details';
 import Row from '../row';
 import { Type } from '../../utils';
-import API from '../../api/api';
-import withData from '../../hocs/with-data';
 
-const PlanetPage = ({ activeItem, onItemClick }) => {
-  const api = new API();
+const PlanetPage = ({ items }) => {
 
-  const { getAllPlanets } = api;
+  const [activeItem, setActiveItem] = useState(null);
 
-  const PlanetList = withData(ItemList, getAllPlanets);
+  const handleItemClick = (item) => {
+    if (activeItem !== null && activeItem.id === item.id) {
+      return;
+    }
+    setActiveItem(item);
+  };
 
   return (
     <Row
       left={(
-        <PlanetList
-          onItemClick={onItemClick}
+        <ItemList
+          items={items}
+          onItemClick={(item) => handleItemClick(item)}
           activeItem={activeItem}
           renderItem={({ name, diameter }) => (`${name} (${diameter})`)} />
 )}

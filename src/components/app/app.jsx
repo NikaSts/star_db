@@ -8,11 +8,17 @@ import PlanetPage from '../planet-page';
 import ErrorBoundry from '../error-boundry';
 import StarshipPage from '../starship-page';
 import withActiveItem from '../../hocs/with-active-item';
+import withData from '../../hocs/with-data';
+import API from '../../api/api';
+
+const api = new API();
+const { getAllPeople, getAllPlanets, getAllStarships } = api;
+const PeoplePageWithData = withData(PeoplePage, getAllPeople);
+const PlanetPageWithData = withData(PlanetPage, getAllPlanets);
+const StarshipPageWithData = withData(StarshipPage, getAllStarships);
 
 const WrappedAppHeader = withActiveItem(AppHeader);
-const WrappedPeoplePage = withActiveItem(PeoplePage);
-const WrappedPlanetPage = withActiveItem(PlanetPage);
-const WrappedStarshipPage = withActiveItem(StarshipPage);
+
 
 const App = () => (
   <ErrorBoundry>
@@ -29,17 +35,17 @@ const App = () => (
       <Route
         exact
         path="/people"
-        render={() => <WrappedPeoplePage />}
+        render={() => <PeoplePageWithData />}
             />
       <Route
         exact
         path="/planets"
-        render={() => <WrappedPlanetPage />}
+        render={() => <PlanetPageWithData />}
             />
       <Route
         exact
         path="/starships"
-        render={() => <WrappedStarshipPage />}
+        render={() => <StarshipPageWithData />}
             />
     </BrowserRouter>
   </ErrorBoundry>
