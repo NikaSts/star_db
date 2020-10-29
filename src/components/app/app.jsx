@@ -7,7 +7,6 @@ import PeoplePage from '../people-page';
 import PlanetPage from '../planet-page';
 import ErrorBoundry from '../error-boundry';
 import StarshipPage from '../starship-page';
-import withActiveItem from '../../hocs/with-active-item';
 import withData from '../../hocs/with-data';
 import API from '../../api/api';
 
@@ -17,8 +16,6 @@ const PeoplePageWithData = withData(PeoplePage, getAllPeople);
 const PlanetPageWithData = withData(PlanetPage, getAllPlanets);
 const StarshipPageWithData = withData(StarshipPage, getAllStarships);
 
-const WrappedAppHeader = withActiveItem(AppHeader);
-
 
 const App = () => (
   <ErrorBoundry>
@@ -27,7 +24,7 @@ const App = () => (
         path="/"
         render={() => (
           <>
-            <WrappedAppHeader />
+            <AppHeader />
             <RandomPlanet />
           </>
         )}
