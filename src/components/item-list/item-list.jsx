@@ -19,7 +19,7 @@ const ItemList = (props) => {
             <button
               className={`list-group-item list-group-item-action ${isActive ? 'active' : ''}`}
               type="button"
-              onClick={() => onItemClick(item)}
+              onFocus={() => onItemClick(item)}
               onKeyPress={() => onItemClick(item)}
               tabIndex="0">
               {label}
@@ -31,4 +31,4 @@ const ItemList = (props) => {
   );
 };
 
-export default ItemList;
+export default React.memo(ItemList);

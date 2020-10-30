@@ -1,14 +1,17 @@
 .header {
-  margin-bottom: 30px;
+  flex-wrap: wrap;
+  margin: 30px;
 }
 
 .header h1 {
   margin: 0;
+  margin-right: 30px;
 }
 
 .header-list {
   align-items: center;
   margin: 0;
+  padding: 0;
   list-style: none;
 }
 

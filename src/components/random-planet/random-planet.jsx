@@ -37,7 +37,7 @@ const RandomPlanet = () => {
   }, []);
 
   return (
-    <section className="random-planet d-flex bg-dark ">
+    <section className="random-planet d-flex bg-dark">
       {error ? <ErrorMessage /> : null}
       {loading ? <Spinner /> : null}
       {!(loading || error) ? <Planet planet={planet} /> : null}

@@ -5,3 +5,8 @@
 .list-group li {
   padding: 0;
 }
+
+.list-group-item-action:focus,
+.list-group-item-action:active {
+  background-color: #375a7f;
+}

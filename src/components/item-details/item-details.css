@@ -1,20 +1,21 @@
-.person-details {
+.item-details {
+  flex-wrap: wrap;
   padding: 15px;
   border-radius: 3px;
   margin-bottom: 30px;
   border: 1px solid #444444;
 }
 
-.person-details h2 {
+.item-details h2 {
   font-size: 1.5rem;
 }
 
-.person-details img {
+.item-details img {
   margin-right: 20px;
   order: -1;
   border-radius: 5px;
 }
 
-.person-details .term {
+.item-details .term {
   width: 125px;
 }

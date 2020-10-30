@@ -8,7 +8,7 @@ const ItemDetails = (props) => {
     return <p>Select item from list</p>;
   }
   return (
-    <section className="person-details d-flex">
+    <section className="item-details d-flex">
       <Item item={item} type={type} />
     </section>
   );
