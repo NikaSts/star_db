@@ -1,65 +1,44 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 import Spinner from '../components/spinner';
 import ErrorMessage from '../components/error-message';
 
 
 const withData = (Component, getData) => {
-  class WrapperWithData extends PureComponent {
-    constructor(props) {
-      super(props);
-      this.state = {
-        data: [],
-        isLoading: false,
-        hasError: false,
-      };
+  const WrapperWithData = (props) => {
 
-      this.updateData = this.updateData.bind(this);
-      this.onDataLoaded = this.onDataLoaded.bind(this);
-      this.onError = this.onError.bind(this);
-    }
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
-    componentDidMount() {
-      this.updateData();
-    }
+    const onDataLoaded = (loadedData) => {
+      setData(loadedData);
+      setLoading(false);
+    };
 
-    onError() {
-      this.setState({
-        isLoading: false,
-        hasError: true,
-      });
-    }
+    const onError = () => {
+      setLoading(false);
+      setError(true);
+    };
 
-    onDataLoaded(data) {
-      this.setState({
-        data,
-        isLoading: false,
-      });
-    }
-
-    updateData() {
-      this.setState({
-        isLoading: true,
-      });
+    const loadData = () => {
+      setLoading(true);
       getData()
-        .then(this.onDataLoaded)
-        .catch(this.onError);
-    }
+        .then(onDataLoaded)
+        .catch(onError);
+    };
 
-    render() {
-      const { data, isLoading, hasError } = this.state;
+    useEffect(() => {
+      loadData();
+    }, []);
 
-      if (isLoading) {
-        return <Spinner />;
-      }
-
-      if (hasError) {
-        return <ErrorMessage />;
-      }
-
-      return <Component {...this.props} items={data} />;
-    }
-  }
-
+    return (
+      <>
+        {error ? <ErrorMessage /> : null}
+        {loading ? <Spinner /> : null}
+        {!(loading || error) ? <Component {...props} items={data} /> : null}
+      </>
+    );
+  };
   return WrapperWithData;
 };
 

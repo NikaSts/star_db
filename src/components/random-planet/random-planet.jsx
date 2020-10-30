@@ -11,7 +11,6 @@ const RandomPlanet = () => {
   const [planet, setPlanet] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  let updateInterval = null;
 
   const onPlanetLoaded = (loadedPlanet) => {
     setPlanet(loadedPlanet);
@@ -19,6 +18,7 @@ const RandomPlanet = () => {
   };
 
   const onError = () => {
+    setLoading(false);
     setError(true);
   };
 
@@ -30,22 +30,17 @@ const RandomPlanet = () => {
 
   useEffect(() => {
     updatePlanet();
-    updateInterval = setInterval(updatePlanet, 50000);
+    const updateInterval = setInterval(updatePlanet, 10000);
     return () => {
       clearInterval(updateInterval);
     };
   }, []);
 
-  const errorMessage = error ? <ErrorMessage /> : null;
-  const spinner = loading ? <Spinner /> : null;
-  const hasData = !(loading || error);
-  const content = hasData ? <Planet planet={planet} /> : null;
-
   return (
     <section className="random-planet d-flex bg-dark ">
-      {errorMessage}
-      {spinner}
-      {content}
+      {error ? <ErrorMessage /> : null}
+      {loading ? <Spinner /> : null}
+      {!(loading || error) ? <Planet planet={planet} /> : null}
     </section>
   );
 };
