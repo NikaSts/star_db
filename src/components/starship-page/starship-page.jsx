@@ -6,18 +6,16 @@ import { Type } from '../../utils';
 
 const StarshipPage = ({ items, activeItem, onItemClick }) => (
   <Row
-    left={(
+    left={
       <ItemList
         items={items}
         onItemClick={onItemClick}
         activeItem={activeItem}
-        renderItem={({ name, passengers }) => (`${name} (${passengers})`)} />
-)}
-    right={(
-      <ItemDetails
-        item={activeItem}
-        type={Type.STARSHIP} />
-)} />
+        renderItem={({ name, passengers }) => `${name} (${passengers})`}
+      />
+    }
+    right={<ItemDetails item={activeItem} type={Type.STARSHIP} />}
+  />
 );
 
 export default withActiveItem(withData(StarshipPage, getAllStarships));

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 const withActiveItem = (Component) => {
   const WrapperWithActiveItem = (props) => {
-
     const [activeItem, setActiveItem] = useState(null);
 
     const handleItemClick = (item) => {
@@ -13,11 +12,7 @@ const withActiveItem = (Component) => {
     };
 
     return (
-      <Component
-        {...props}
-        activeItem={activeItem}
-        onItemClick={(item) => handleItemClick(item)}
-      />
+      <Component {...props} activeItem={activeItem} onItemClick={(item) => handleItemClick(item)} />
     );
   };
   return WrapperWithActiveItem;

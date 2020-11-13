@@ -1,7 +1,6 @@
 import { DATA_END_POINT } from '../utils';
 import { transformPlanet, transformPerson, transformStarship } from './adapter';
 
-
 export const getResource = async (url) => {
   const response = await fetch(`${DATA_END_POINT}${url}`);
   if (!response.ok) {

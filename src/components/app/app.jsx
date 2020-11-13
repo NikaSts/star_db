@@ -1,7 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import {
-  AppHeader, RandomPlanet, PeoplePage, PlanetPage, StarshipPage, ErrorBoundry,
+  AppHeader,
+  RandomPlanet,
+  PeoplePage,
+  PlanetPage,
+  StarshipPage,
+  ErrorBoundry,
 } from '../../components';
 
 const App = () => (
@@ -15,22 +20,10 @@ const App = () => (
             <RandomPlanet />
           </>
         )}
-            />
-      <Route
-        exact
-        path="/people"
-        render={() => <PeoplePage />}
-            />
-      <Route
-        exact
-        path="/planets"
-        render={() => <PlanetPage />}
-            />
-      <Route
-        exact
-        path="/starships"
-        render={() => <StarshipPage />}
-            />
+      />
+      <Route exact path="/people" render={() => <PeoplePage />} />
+      <Route exact path="/planets" render={() => <PlanetPage />} />
+      <Route exact path="/starships" render={() => <StarshipPage />} />
     </BrowserRouter>
   </ErrorBoundry>
 );

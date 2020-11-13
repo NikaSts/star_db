@@ -4,7 +4,6 @@ import { capitalizeFirstLetter, buttons } from '../../utils';
 import './app-header.css';
 
 const AppHeader = () => {
-
   const [activeItem, setActiveItem] = useState(null);
 
   const handleItemClick = (item) => {
@@ -18,7 +17,6 @@ const AppHeader = () => {
     <div className="header d-flex">
       <h1>Star Wars</h1>
       <ul className="header-list d-flex">
-
         {buttons.map((button) => {
           const isActive = activeItem === button;
 
@@ -27,12 +25,12 @@ const AppHeader = () => {
               <Link
                 to={`/${button}`}
                 className={`btn btn-outline-info ${isActive ? 'active' : ''}`}
-                onClick={() => handleItemClick(button)}>
+                onClick={() => handleItemClick(button)}
+              >
                 {capitalizeFirstLetter(button)}
               </Link>
             </li>
           );
-
         })}
       </ul>
     </div>

@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Spinner from '../components/spinner';
 import ErrorMessage from '../components/error-message';
 
-
 const withData = (Component, getData) => {
   const WrapperWithData = (props) => {
-
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -22,9 +20,7 @@ const withData = (Component, getData) => {
 
     const loadData = () => {
       setLoading(true);
-      getData()
-        .then(onDataLoaded)
-        .catch(onError);
+      getData().then(onDataLoaded).catch(onError);
     };
 
     useEffect(() => {

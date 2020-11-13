@@ -1,11 +1,8 @@
 import React from 'react';
 import './item-list.css';
 
-
 const ItemList = (props) => {
-  const {
-    items, onItemClick, activeItem, renderItem,
-  } = props;
+  const { items, onItemClick, activeItem, renderItem } = props;
   return (
     <ul className="list-group">
       {items.map((item) => {
@@ -13,15 +10,14 @@ const ItemList = (props) => {
         const isActive = activeItem ? activeItem.id === id : null;
         const label = renderItem(item);
         return (
-          <li
-            className="list-group-item"
-            key={id}>
+          <li className="list-group-item" key={id}>
             <button
               className={`list-group-item list-group-item-action ${isActive ? 'active' : ''}`}
               type="button"
               onFocus={() => onItemClick(item)}
               onKeyPress={() => onItemClick(item)}
-              tabIndex="0">
+              tabIndex="0"
+            >
               {label}
             </button>
           </li>

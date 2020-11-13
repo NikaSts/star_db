@@ -3,37 +3,35 @@ module.exports = {
     es6: true,
     browser: true,
   },
-  extends: 'airbnb',
-  plugins: [
-    'import',
-    'jsx-a11y',
-    'react',
-  ],
+  extends: ['airbnb', 'prettier', 'prettier/react'],
+  plugins: ['prettier', 'react'],
   parserOptions: {
     ecmaVersion: 9,
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
   },
   rules: {
     'no-console': 'error', // airbnb is using warn
     'no-alert': 'error', // airbnb is using warn
-    'react/jsx-one-expression-per-line': 'off',
     'react/prop-types': 'off', // temporary enabled
-    'jsx-a11y/label-has-for': [2, {
-      'required': {
-        'every': ['id']
-      }
-    }], // for nested label htmlFor error
+    'react/jsx-one-expression-per-line': 'off',
     'react/jsx-props-no-spreading': 'off', // temporary enabled
-    'react/jsx-closing-bracket-location': 'off',
-    "react/jsx-filename-extension": 'off',
+    'react/jsx-filename-extension': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+      },
+    ],
     'import/no-useless-path-segments': 'off',
   },
   settings: {
     react: {
-      version: '16.13'
+      version: '16.13',
     },
   },
-}
+};
